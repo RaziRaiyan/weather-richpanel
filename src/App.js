@@ -53,7 +53,7 @@ function App() {
                     return <WeatherDayItem key={index} active={index === data.activeDay} day={item[0].dateTime.day} maxTemp={item[0].main.temp_min} minTemp={item[0].main.temp_max} condition={item[0].weather[0].main} index={index} icon={item[0].weather[0].icon}/>
                 })}
             </div>
-            <div className={"flex flex-col lg:flex-row m-4 rounded-lg shadow-cell p-4 items-center"}>
+            <div className={"flex flex-col lg:flex-row m-4 rounded-lg shadow-cellLg p-4 items-center"}>
                 <div className={"w-full lg:w-1/2"}>
                     <div className={"flex items-center ml-8 mb-4"}>
                         <div className={"text-4xl font-bold"}>{data.list ? data.list[data.activeDay][0].main.temp+"°C" : ""}</div>
