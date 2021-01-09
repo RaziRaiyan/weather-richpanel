@@ -19,14 +19,14 @@ const Sunchart = ({sunrise, sunset}) => {
         current += step;
     }
 
-    const getDarkTime = (suntime, toAdd) => {
-        const hour = parseInt(suntime.split(":")[0]);
-        if(toAdd){
-            return `${hour+1}:00 PM`
-        }else {
-            return `${hour-1}:00 AM`
-        }
-    }
+    // const getDarkTime = (suntime, toAdd) => {
+    //     const hour = parseInt(suntime.split(":")[0]);
+    //     if(toAdd){
+    //         return `${hour+1}:00 PM`
+    //     }else {
+    //         return `${hour-1}:00 AM`
+    //     }
+    // }
 
     const getChartHeight = () => {
         const innerWidth = window.innerWidth;
@@ -39,7 +39,7 @@ const Sunchart = ({sunrise, sunset}) => {
         }
     }
 
-    const height = getChartHeight();
+    // const height = getChartHeight();
     //
     // const getPosition = () => {
     //     return {
@@ -51,7 +51,7 @@ const Sunchart = ({sunrise, sunset}) => {
 
     useEffect(() => {
         const ctx = document.getElementById('canvas').getContext("2d")
-        const gradient = ctx.createLinearGradient(0, 0, 0, height)
+        const gradient = ctx.createLinearGradient(0, 0, 0, 200)
         gradient.addColorStop(0, '#ffcc80')
         gradient.addColorStop(0.2, 'rgba(253, 230, 138)')
         gradient.addColorStop(0.4, 'rgba(255, 251, 235)')
@@ -89,7 +89,7 @@ const Sunchart = ({sunrise, sunset}) => {
         <Line
             id={"canvas"}
             data={state.chartData}
-            height={height}
+            height={200}
             options={{
                 maintainAspectRatio: false,
                 elements: {

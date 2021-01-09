@@ -10,7 +10,7 @@ export const listForecast = (city = null, state = null) => async (dispatch) => {
                 navigator.geolocation.getCurrentPosition(
                     async (position) => {
                         const {latitude, longitude} = position.coords;
-                        let url = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=f1d018fc69c1f0b869d78994c6920c99`
+                        let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=f1d018fc69c1f0b869d78994c6920c99`
                         const {data} = await axios.get(url);
                         data.activeDay = 0;
                         data.list = getFormattedList(data.list);
@@ -18,12 +18,13 @@ export const listForecast = (city = null, state = null) => async (dispatch) => {
                         dispatch({type: FORECAST_SUCCESS, payload: data});
                     },
                     function(){
-                        alert('Could not get your position');
+                        alert('Could not get your coordinates');
+                        dispatch({type: FORECAST_FAILED, payload: "Could not get your coordinates"});
                     }
                 )
             }
         }else{
-            let url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=f1d018fc69c1f0b869d78994c6920c99`;
+            let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=f1d018fc69c1f0b869d78994c6920c99`;
             const {data} = await axios.get(url);
             data.activeDay = 0;
             data.city.state = state;

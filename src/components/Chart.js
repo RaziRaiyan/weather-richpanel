@@ -23,8 +23,6 @@ const Chart = ({dayData}) => {
         charDate: {}
     });
 
-    console.log(window.innerWidth);
-
     const getChartHeight = () => {
         const innerWidth = window.innerWidth;
         if(innerWidth > 500){

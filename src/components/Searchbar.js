@@ -23,7 +23,7 @@ const Searchbar = () => {
         }
     }, [city])
 
-    const {cities, loading, error} = searchCityState;
+    const {cities} = searchCityState;
 
     let searchRef = useRef(null);
 
@@ -48,10 +48,29 @@ const Searchbar = () => {
         }
     }
 
+    const handleLocationSearch = (event) => {
+        event.preventDefault();
+        if(forecastState.loading)
+            return ;
+        setSelectedCity(``);
+        dispatch(listForecast(null))
+    }
+
+    const handleSearchCityClick = (event) => {
+        event.preventDefault();
+        if(forecastState.loading)
+            return ;
+        setSelectedCity(``);
+        dispatch(clearCity());
+        dispatch(listForecast(searchRef.current.value))
+    }
+
     return <div className={"flex items-center w-full"}>
-        <svg className={"w-6 h-6 transform translate-x-8 z-20"}  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-        </svg>
+        <button className={"focus:outline-none z-20"} onClick={handleLocationSearch}>
+            <svg className={"w-6 h-6 transform translate-x-8"}  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+            </svg>
+        </button>
         <div className={"relative w-full my-4 "}>
             <input onChange={handleCitySearch} value={selectedCity} ref={searchRef} type={"text"} className={"w-full shadow-cell transition duration-500 rounded-lg px-10 py-3 focus:outline-none focus:ring-1 focus:shadow-cellLg"}/>
             {
@@ -65,7 +84,7 @@ const Searchbar = () => {
                                         <div className={"flex flex-col "}>
                                             <span className={"font-bold text-sm"}>{(city.temp+"").split(".")[0]}&deg; C</span><span className={"text-gray-500 text-xs"}>{city.condition}</span>
                                         </div>
-                                        <img src={getIconUrl(city.condition, city.icon)} className={"h-6 w-6 ml-4"}/>
+                                        <img src={getIconUrl(city.condition, city.icon)} alt={""} className={"h-6 w-6 ml-4"}/>
                                     </div>
                                 </div>
                             </div>
@@ -73,9 +92,11 @@ const Searchbar = () => {
                     </div>
             }
         </div>
-        <svg className={"w-6 h-6 transform -translate-x-8 z-20"} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
+        <button onClick={handleSearchCityClick} className={"focus:outline-none"}>
+            <svg className={"w-6 h-6 transform -translate-x-8 z-20"} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </button>
     </div>
 
 }
