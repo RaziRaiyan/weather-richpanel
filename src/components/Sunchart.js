@@ -56,8 +56,8 @@ const Sunchart = ({sunrise, sunset}) => {
         gradient.addColorStop(0.2, 'rgba(253, 230, 138)')
         gradient.addColorStop(0.4, 'rgba(255, 251, 235)')
         gradient.addColorStop(0.46, 'rgba(255, 251, 235)')
-        gradient.addColorStop(0.46, "rgba(55, 65, 81)")
-        gradient.addColorStop(0.5, 'rgba(55, 65, 81)');
+        gradient.addColorStop(0.46, "rgba(107, 114, 128)")
+        gradient.addColorStop(0.5, 'rgba(107, 114, 128)');
         let flag = true;
         const newData = {
             // labels: [getDarkTime(sunrise, false), sunrise, '', '', '','', sunset, getDarkTime(sunset, true)],
