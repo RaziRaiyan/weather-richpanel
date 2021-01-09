@@ -1,0 +1,5 @@
+export const CITIES_REQUEST = "CITIES_REQUEST";
+export const CITIES_SUCCESS = "CITIES_SUCCESS";
+export const CITIES_FAILED = "CITIES_FAILED";
+
+export const CLEAR_CITIES = "CLEAR_CITIES";
