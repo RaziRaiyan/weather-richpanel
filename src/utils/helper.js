@@ -51,7 +51,26 @@ export const getIconUrl = (condition, icon) => {
             return "/clear.svg";
         case "Rain":
             return "/rain.svg";
+        case "Mist":
+            return "/mist.svg";
+        case "Haze":
+            return "/mist.svg"
+        case "Fog":
+            return "/mist.svg"
         default:
             return `http://openweathermap.org/img/w/${icon}.png`
+    }
+}
+
+
+let timer;
+
+export const debounce = function (callback, delay){
+    return function (){
+        let context = this;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            callback.apply(context);
+        }, delay);
     }
 }

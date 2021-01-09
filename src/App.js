@@ -70,11 +70,19 @@ function App() {
         </>
     }
 
+    const renderError = () => {
+        return<div className={"w-full flex flex-col justify-center text-gray-600 px-8 items-center mt-8"}>
+            <div className={"text-8xl"}>Error!</div>
+            <div className={"text-4xl mt-4"}>Cannot find weather info for your city</div>
+            <div className={"mt-4"}>Please try a different city or come back later</div>
+        </div>
+    }
+
   return (
     <div className="container mx-auto text-gray-800 font-montserrat">
         <Searchbar/>
         {
-            loading ? renderLoader() : renderUI()
+            loading ? renderLoader() : (error ? renderError() : renderUI())
         }
     </div>
   );

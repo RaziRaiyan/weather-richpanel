@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {clearCity, fetchCity} from '../factory/actions/cityActions'
 import {useDispatch, useSelector} from "react-redux";
 import {listForecast} from "../factory/actions/forecastActions";
+import {getIconUrl} from "../utils/helper";
 
 const Searchbar = () => {
 
@@ -55,16 +56,16 @@ const Searchbar = () => {
             <input onChange={handleCitySearch} value={selectedCity} ref={searchRef} type={"text"} className={"w-full shadow-cell transition duration-500 rounded-lg px-10 py-3 focus:outline-none focus:ring-1 focus:shadow-cellLg"}/>
             {
                 cities.length > 0 &&
-                    <div onClick={handleCityClick} className={"w-full z-40 absolute top-12 rounded-lg flex flex-col shadow-cellLg bg-white divide-y"} style={{marginTop: "2px"}}>
+                    <div onClick={handleCityClick} className={"w-full z-40 absolute top-12 rounded-lg flex flex-col shadow-cellLg bg-white divide-y cursor-pointer"} style={{marginTop: "2px"}}>
                         {cities.map((city, index) => {
                             return <div data-city={city.name} data-state={city.state} className={`p-2 transition duration-300 hover:bg-gray-100 ${index === 0 && "rounded-t-lg"} ${index === cities.length-1 && "rounded-b-lg"}`} key={index} >
                                 <div className={"flex items-center flex justify-between items-center animate-moveY"}>
                                     <div><span>{city.initialPart}</span><span className={"font-bold"}>{city.searchPart}</span><span>{city.remainingPart}</span>, <span className={"text-gray-500 text-sm"}>{city.state}</span></div>
                                     <div className={"flex items-center"}>
                                         <div className={"flex flex-col "}>
-                                            <span className={"font-bold text-sm"}>8&deg; C</span><span className={"text-gray-500 text-xs"}>Rain</span>
+                                            <span className={"font-bold text-sm"}>{(city.temp+"").split(".")[0]}&deg; C</span><span className={"text-gray-500 text-xs"}>{city.condition}</span>
                                         </div>
-                                        <img src={"/sun.svg"} className={"h-6 w-6 ml-4"}/>
+                                        <img src={getIconUrl(city.condition, city.icon)} className={"h-6 w-6 ml-4"}/>
                                     </div>
                                 </div>
                             </div>
