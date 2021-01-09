@@ -23,9 +23,26 @@ const Chart = ({dayData}) => {
         charDate: {}
     });
 
+    console.log(window.innerWidth);
+
+    const getChartHeight = () => {
+        const innerWidth = window.innerWidth;
+        if(innerWidth > 500){
+            return 400;
+        }else if(innerWidth > 400){
+            return 300;
+        }else {
+            return 200;
+        }
+    }
+
+    const height = getChartHeight();
+
+    console.log(height);
+
     useEffect(() => {
         const ctx = document.getElementById('canvas').getContext("2d")
-        const gradient = ctx.createLinearGradient(0, 0, 0, 400)
+        const gradient = ctx.createLinearGradient(0, 0, 0, height)
         gradient.addColorStop(0, 'rgba(96, 165, 250)')
         gradient.addColorStop(1, '#FFFFFF')
         const newData = {
@@ -51,7 +68,7 @@ const Chart = ({dayData}) => {
         <Line
             id={"canvas"}
             data={state.chartData}
-            height={500}
+            height={height}
             options={{
                 maintainAspectRatio: false,
                 legend: {
@@ -74,6 +91,13 @@ const Chart = ({dayData}) => {
                     bodyFontColor: 'rgba(59, 130, 246)',
                     bodyFontSize: 14,
                     displayColors: false
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
+                        }
+                    }],
                 }
             }}
         />

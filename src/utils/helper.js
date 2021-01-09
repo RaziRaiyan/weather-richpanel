@@ -64,7 +64,6 @@ export const getIconUrl = (condition, icon) => {
 
 
 let timer;
-
 export const debounce = function (callback, delay){
     return function (){
         let context = this;
@@ -72,5 +71,19 @@ export const debounce = function (callback, delay){
         timer = setTimeout(() => {
             callback.apply(context);
         }, delay);
+    }
+}
+
+let throttleFlag = true;
+export const throttle = function (callback, delay){
+    return function(...args){
+        let context = this;
+        if(throttleFlag){
+            callback.apply(context, args);
+            throttleFlag = false;
+            setTimeout(() => {
+                throttleFlag = true
+            }, delay)
+        }
     }
 }
