@@ -36,8 +36,6 @@ const Chart = ({dayData}) => {
 
     const height = getChartHeight();
 
-    console.log(height);
-
     useEffect(() => {
         const ctx = document.getElementById('canvas').getContext("2d")
         const gradient = ctx.createLinearGradient(0, 0, 0, height)

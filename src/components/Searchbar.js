@@ -21,7 +21,7 @@ const Searchbar = () => {
         }else if(city){
             setSelectedCity(`${city}`);
         }
-    }, [city])
+    }, [forecastState.data.city])
 
     const {cities} = searchCityState;
 

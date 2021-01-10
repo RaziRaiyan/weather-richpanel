@@ -57,7 +57,7 @@ function App() {
                 <div className={"w-full lg:w-1/2"}>
                     <div className={"flex items-center ml-8 mb-4"}>
                         <div className={"text-4xl font-bold"}>{data.list ? data.list[data.activeDay][0].main.temp+"°C" : ""}</div>
-                        <img className={"w-12 h-12 ml-4"} src={getIconUrl(data.list[0][0].weather[0].main)} alt={"sunny"}/>
+                        <img className={"w-12 h-12 ml-4"} src={getIconUrl(data.list[data.activeDay][0].weather[0].main)} alt={"sunny"}/>
                     </div>
                     <Chart dayData={data.list ? data.list[data.activeDay] : []}/>
                 </div>
